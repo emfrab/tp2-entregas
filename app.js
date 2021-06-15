@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const app = express();
 
 
 const uploader = async (req, res) => {
@@ -19,16 +18,40 @@ const uploader = async (req, res) => {
     }catch(err) {
         console.log(err)
     }
-}; 
+};
 
-app.listen(3000, () => {
-    console.log("Running");
-});
+function build({port}) {
+    const app = express();
+    
+    app.post('/upload', uploader)
+    app.get("/download", (req, res) => {
+        res.sendFile(__dirname + "./files/cat.gif")
+    })
 
-app.get("/", (req, res) => {
-    res.json("Running");
-});
+    return new Promise((resolve, reject) => {
+        const server = app
+        .listen(port)
+        .once('error', () => {
+            reject(new Error('Error al conectarse'))
+        })
+        .once('listening', () => {
+            console.log('Running...')
+            server.port = server.address().port
+            resolve(server)
+        });
+    });
+};
 
-app.get("/download", (req, res) => {
-    res.sendFile(__dirname + "/files/cat.gif")
-})
+export {build}
+
+// app.listen(3000, () => {
+//     console.log("Running");
+// });
+
+// app.get("/", (req, res) => {
+//     res.json("Running");
+// });
+
+// app.get("/download", (req, res) => {
+//     res.sendFile(__dirname + "/files/cat.gif")
+// })
