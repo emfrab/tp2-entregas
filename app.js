@@ -15,17 +15,19 @@ const uploader = async (req, res) => {
         }
 
         res.status(200).send({message: `Archivo subido: ${req.file.originalname}`})
+        console.log('Archivo subido')
     }catch(err) {
         console.log(err)
     }
 };
 
 function build({port}) {
+    console.log('Creating server')
     const app = express();
     
     app.post('/upload', uploader)
     app.get("/download", (req, res) => {
-        res.sendFile(__dirname + "./files/cat.gif")
+        res.sendFile(__dirname + "/files/cat.gif")
     })
 
     return new Promise((resolve, reject) => {

@@ -8,9 +8,21 @@ async function main() {
     let sv = build({port: 3000})
     const formData = new FormData();
 
-    formData.append("archivo", fs.createReadStream("G:\\Users\\Ema\\Documentos\\repos\\tp2-entregas\\uploads\\cat.gif"));
+    formData.append("archivo", fs.createReadStream("G:\\Users\\Ema\\Imagenes\\timon.jpg"));
 
-    const res = await axios.post('http://localhost:3000/upload', formData, {
+    const res = await axios.get('http://localhost:3000/download'
+            ).then(response => {
+                  if (response.status === 200) {
+                      console.log("Success")
+                  } else {
+                      console.log("Error occurred")
+                  }
+              })
+          .catch(e => {
+              console.log(e)
+          })
+
+    const res2 = await axios.post('http://localhost:3000/upload', formData, {
   // You need to use `getHeaders()` in Node.js because Axios doesn't
   // automatically set the multipart form boundary in Node.
         headers: formData.getHeaders()
@@ -24,7 +36,7 @@ async function main() {
     .catch(e => {
         console.log(e)
     })
-    // console.log(res.data);
+    // console.log(res2.data);
 }
 
     // await axios({
