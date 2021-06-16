@@ -10,7 +10,7 @@ const uploader = async (req, res) => {
     try {
         await upload(req, res)
 
-        if (req.fil == undefined) {
+        if (req.file == undefined) {
             return res.status(400).send({message: 'Por favor elija un archivo'})
         }
 
