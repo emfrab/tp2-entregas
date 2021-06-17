@@ -23,8 +23,6 @@ async function main() {
           })
 
     const res2 = await axios.post('http://localhost:3000/upload', formData, {
-  // You need to use `getHeaders()` in Node.js because Axios doesn't
-  // automatically set the multipart form boundary in Node.
         headers: formData.getHeaders()
     }).then(response => {
             if (response.status === 200) {
@@ -36,26 +34,6 @@ async function main() {
     .catch(e => {
         console.log(e)
     })
-    // console.log(res2.data);
 }
-
-    // await axios({
-    //     method: "POST",
-    //     url: url + ruta,
-    //     data: formData,
-    //     headers: {
-    //     }
-    // })
-    //     .then(response => {
-    //         if (response.status === 200) {
-    //             console.log("Success")
-    //         } else {
-    //             console.log("Error occurred")
-    //         }
-    //     }
-    //     ).catch(e => {
-    //         console.log(e)
-    //     })
-
 
 main()

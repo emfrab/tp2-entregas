@@ -45,15 +45,3 @@ function build({port}) {
 };
 
 export {build}
-
-// app.listen(3000, () => {
-//     console.log("Running");
-// });
-
-// app.get("/", (req, res) => {
-//     res.json("Running");
-// });
-
-// app.get("/download", (req, res) => {
-//     res.sendFile(__dirname + "/files/cat.gif")
-// })
