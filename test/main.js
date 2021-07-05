@@ -8,8 +8,3 @@ const datos = { cuil: '20-42884455-0', nombre: 'Emanuel', mail: 'ema@gmail.com',
 const archivo = 'ejemplo'
 
 await CU.registrar(datos, archivo)
-console.log(dao.prestadores)
-console.log(dao.archivos)
-
-const datos2 = { cuil: '20-42884455-0', nombre: 'Pepe', mail: 'pepe@gmail.com', rubro: 1 }
-await CU.registrar(datos, archivo)
