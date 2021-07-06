@@ -1,20 +1,21 @@
 import AltaPrestador from './AltaPrestador.js'
 import daoPrestador from './daoPrestador.js'
+import createUploader from './testMulter.js'
 
 
 const dao = new daoPrestador()
 const ruta = "G:/Users/Ema/Documentos/CV -Emanuel Abitante.pdf"
-const uplder = new uploader(ruta)
+const uploader = new createUploader(ruta)
 
 
 function crearCU_AltaPrestador() {
     const CU_Alta = new AltaPrestador(
         dao,
-        uplder
+        uploader
     )
     return CU_Alta
 }
 
-export default {
+export {
     crearCU_AltaPrestador
 }

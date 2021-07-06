@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { build } from './app.js';
 import fs from 'fs'
 import FormData from 'form-data'
 import path from 'path';
@@ -8,20 +7,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-class uploader {
+class createUploader {
 
-    constructor(rutaArchivo) {
-        this.formData = new FormData();
-        this.formData.append("archivo", fs.createReadStream(rutaArchivo));
-    }
+    async subir(rutaArchivo) {
+    
+        const formData = new FormData();
+        formData.append("archivo", fs.createReadStream(rutaArchivo));
 
-    async subir() {
-        await axios.post('http://localhost:3000/upload', this.formData, {
-            headers: this.formData.getHeaders()
+        await axios.post('http://localhost:3000/upload', formData, {
+            headers: formData.getHeaders()
         }).then(response => {
             if (response.status === 200) {
                 console.log("Archivo subido")
-                this.nombreArchivo = response.data.message
+                this.nombreArchivo = response.data.filename
             } else {
                 console.log("Error occurred")
             }
@@ -38,4 +36,4 @@ class uploader {
 
 }
 
-export default uploader
+export default createUploader

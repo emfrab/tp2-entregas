@@ -14,7 +14,7 @@ const uploader = async (req, res) => {
             return res.status(400).send({message: 'Por favor elija un archivo'})
         }
 
-        res.status(200).send({message: req.file.originalname})
+        res.status(200).send({filename: req.file.originalname})
     }catch(err) {
         console.log(err)
     }
