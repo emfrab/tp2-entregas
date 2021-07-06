@@ -1,5 +1,3 @@
-
-
 class crearDaoPrestador {
     constructor() {
         this.prestadores = []
@@ -13,6 +11,7 @@ class crearDaoPrestador {
         this.prestadores.push(prestador)
         this.archivos.push(this.crearArchivo(archivo, prestador))        
     }
+
     exists(prestador) {
         let i;
         for (i = 0; i < this.prestadores.length; i++) {
