@@ -4,8 +4,7 @@ import createUploader from './testMulter.js'
 
 
 const dao = new daoPrestador()
-const ruta = "G:/Users/Ema/Documentos/CV -Emanuel Abitante.pdf"
-const uploader = new createUploader(ruta)
+const uploader = new createUploader()
 
 
 function crearCU_AltaPrestador() {
